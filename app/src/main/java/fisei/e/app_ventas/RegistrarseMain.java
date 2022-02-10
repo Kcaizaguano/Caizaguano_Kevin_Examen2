@@ -16,6 +16,7 @@ import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.concurrent.atomic.AtomicInteger;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -81,14 +82,23 @@ public class RegistrarseMain extends AppCompatActivity {
     public void ExisteCliente(){
         try {
 
-                    Statement st = connectionclass().createStatement();
-                    ResultSet rs= st.executeQuery("select cedula_cli from Clientes where cedula_cli='"+editTextCedula.getText()+"'");
-                    if(rs.next()) {
-                        if (rs.getString(1) != "") {
-                            Toast.makeText(this, "El cliente ya existe...", Toast.LENGTH_LONG).show();
-                            x=1;
-                        }
+            String cedula = editTextCedula.getText().toString();
+            if (cedula.length() >= 10 ){
+
+                Statement st = connectionclass().createStatement();
+                ResultSet rs= st.executeQuery("select cedula_cli from Clientes where cedula_cli='"+editTextCedula.getText()+"'");
+                if(rs.next()) {
+                    if (rs.getString(1) != "") {
+                        Toast.makeText(this, "El cliente ya existe...", Toast.LENGTH_LONG).show();
+                        x=1;
                     }
+                }
+
+            }else
+            {
+                Toast.makeText(this,"Ingrese un cedula valida ", Toast.LENGTH_SHORT).show();
+                x=5;
+            }
         }catch(SQLException e){
                 Toast.makeText(getApplicationContext(),"error existe",Toast.LENGTH_SHORT).show();
         }
@@ -132,6 +142,24 @@ public class RegistrarseMain extends AppCompatActivity {
 
     }
 
+    public Boolean VaildarCorreo (String correo){
+
+        try {
+
+            Statement st = connectionclass().createStatement();
+            ResultSet rs= st.executeQuery("select cedula_cli from Clientes where cedula_cli='"+editTextCedula.getText()+"'");
+            if(rs.next()) {
+                if (rs.getString(1) != "") {
+                    Toast.makeText(this, "El cliente ya existe...", Toast.LENGTH_LONG).show();
+                    x=1;
+                }
+            }
+
+        }catch (Exception ex){
+            return  false;
+        }
+    }
+
     public  Boolean ValidarContrasenia ( String contraseña){
 
 
@@ -140,7 +168,7 @@ public class RegistrarseMain extends AppCompatActivity {
                 boolean mayuscula = false;
                 boolean numero = false;
                 boolean minuscula = false;
-                boolean caracter = false;
+                boolean caracter = true;
                 char c;
 
 
@@ -153,8 +181,8 @@ public class RegistrarseMain extends AppCompatActivity {
                         mayuscula = true;
                     if (Character.isLowerCase(c))
                         minuscula= true;
-                   if (Character.isUnicodeIdentifierPart(c))
-                        caracter = true;
+                 //  if (Character.isUnicodeIdentifierPart(c))
+                      //  caracter = true;
                 }
 
 
