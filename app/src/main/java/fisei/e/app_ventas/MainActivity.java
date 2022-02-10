@@ -17,6 +17,8 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.Statement;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 public class MainActivity extends AppCompatActivity  {
     EditText editTextEmail;
@@ -93,7 +95,7 @@ public class MainActivity extends AppCompatActivity  {
             }
 
         }catch (Exception e){
-            Toast.makeText(getApplicationContext(),"Usuario o Contraseña no coinciden",Toast.LENGTH_SHORT).show();
+           // Toast.makeText(getApplicationContext(),"Usuario o Contraseña no coinciden",Toast.LENGTH_SHORT).show();
         }
     }
 
@@ -105,8 +107,19 @@ public class MainActivity extends AppCompatActivity  {
             boolean mayuscula = false;
             boolean numero = false;
             boolean minuscula = false;
-            boolean caracter = true;
+            boolean caracter = false;
             char c;
+            String cadena = "!@#\\$%\\^&\\*\\?_~\\/";
+            char[] especiales = {'?','@','#','$','%','^','&','*','?','_','~'};
+
+            for (int j =0 ; j < especiales.length; j++){
+                for (int h =0 ; h < contraseña.length(); h++){
+                    if (contraseña.charAt(h) == especiales[j] ){
+                        caracter = true;
+                    }
+                }
+            }
+
 
 
 
@@ -127,7 +140,7 @@ public class MainActivity extends AppCompatActivity  {
             if (mayuscula && numero && minuscula && caracter){
                 return  true;
             } else{
-                Toast.makeText(getApplicationContext(), "Debe contener mayuscula, minuscula,numero y  caracter especial", Toast.LENGTH_SHORT).show();
+                Toast.makeText(getApplicationContext(), "Debe contener mayuscula, minuscula,numero,y  caracter especial", Toast.LENGTH_SHORT).show();
                 return  false;
             }
 

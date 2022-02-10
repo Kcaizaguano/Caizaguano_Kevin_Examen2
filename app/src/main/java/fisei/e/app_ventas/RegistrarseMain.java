@@ -137,7 +137,7 @@ public class RegistrarseMain extends AppCompatActivity {
 
 
         }else{
-           //Toast.makeText(getApplicationContext(), "Debe contener mayuscula, minuscula,numero,y  caracter especial", Toast.LENGTH_SHORT).show();
+           // Toast.makeText(getApplicationContext(), "Debe contener mayuscula, minuscula,numero,y  caracter especial", Toast.LENGTH_SHORT).show();
 
         }
 
@@ -195,11 +195,12 @@ public class RegistrarseMain extends AppCompatActivity {
                     return  true;
                 } else{
                     Toast.makeText(getApplicationContext(), "Debe contener mayuscula, minuscula,numero,y  caracter especial", Toast.LENGTH_SHORT).show();
-                    return  false;
+
                 }
+                    return  false;
 
             }else {
-                Toast.makeText(getApplicationContext(), "La contraseña es 6 a 10 caracteres", Toast.LENGTH_SHORT).show();
+                Toast.makeText(getApplicationContext(), "La contraseña es de  6 a 10 caracteres", Toast.LENGTH_SHORT).show();
                 return  false;
             }
 
