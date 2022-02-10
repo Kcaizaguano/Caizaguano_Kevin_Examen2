@@ -137,7 +137,7 @@ public class RegistrarseMain extends AppCompatActivity {
 
 
         }else{
-           // Toast.makeText(getApplicationContext(), "Debe contener mayuscula, minuscula,numero,y  caracter especial", Toast.LENGTH_SHORT).show();
+           //Toast.makeText(getApplicationContext(), "Debe contener mayuscula, minuscula,numero,y  caracter especial", Toast.LENGTH_SHORT).show();
 
         }
 
