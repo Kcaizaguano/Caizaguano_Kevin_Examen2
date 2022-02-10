@@ -16,6 +16,8 @@ import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 public class RegistrarseMain extends AppCompatActivity {
 
@@ -138,8 +140,10 @@ public class RegistrarseMain extends AppCompatActivity {
                 boolean mayuscula = false;
                 boolean numero = false;
                 boolean minuscula = false;
-                boolean caracter = true;
+                boolean caracter = false;
                 char c;
+
+
 
                 for (int i=0 ; i< contraseña.length();i++){
                     c = contraseña.charAt(i);
@@ -149,8 +153,8 @@ public class RegistrarseMain extends AppCompatActivity {
                         mayuscula = true;
                     if (Character.isLowerCase(c))
                         minuscula= true;
-                   // if (Character.isSpaceChar(c))
-                        //caracter = true;
+                   if (Character.isUnicodeIdentifierPart(c))
+                        caracter = true;
                 }
 
 
