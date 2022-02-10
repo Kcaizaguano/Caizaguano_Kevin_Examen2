@@ -117,21 +117,22 @@ public class RegistrarseMain extends AppCompatActivity {
 
     }
 
-    public  Boolean ValidarContrasenia ( String contra){
-
-        try {
-
-            if (contra)
+    public  Boolean ValidarContrasenia ( String contraseña){
 
 
+            if (contraseña.length() > 6 ){
+
+                boolean mayuscula = false;
+                boolean numero = false;
+                boolean minuscula = false;
+                boolean caracter = false;
 
 
-        }catch (Exception ex ){
 
-            Toast.makeText(this, ex.getMessage(), Toast.LENGTH_SHORT).show();
-        }
-        return  false;
 
+            }else {
+                return  false;
+            }
 
     }
 }
