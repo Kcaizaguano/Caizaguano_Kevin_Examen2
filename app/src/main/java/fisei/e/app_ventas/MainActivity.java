@@ -95,7 +95,7 @@ public class MainActivity extends AppCompatActivity  {
             }
 
         }catch (Exception e){
-           // Toast.makeText(getApplicationContext(),"Usuario o Contraseña no coinciden",Toast.LENGTH_SHORT).show();
+            Toast.makeText(getApplicationContext(),"Usuario o Contraseña no coinciden",Toast.LENGTH_SHORT).show();
         }
     }
 
@@ -109,9 +109,8 @@ public class MainActivity extends AppCompatActivity  {
             boolean minuscula = false;
             boolean caracter = false;
             char c;
-            String cadena = "!@#\\$%\\^&\\*\\?_~\\/";
-            char[] especiales = {'?','@','#','$','%','^','&','*','?','_','~'};
 
+            char[] especiales = {'?','@','#','$','%','^','&','*','?','_','~','.','|','-','[','}','+','{',']',';',':'};
             for (int j =0 ; j < especiales.length; j++){
                 for (int h =0 ; h < contraseña.length(); h++){
                     if (contraseña.charAt(h) == especiales[j] ){
@@ -119,8 +118,6 @@ public class MainActivity extends AppCompatActivity  {
                     }
                 }
             }
-
-
 
 
             for (int i=0 ; i< contraseña.length();i++){
@@ -131,8 +128,7 @@ public class MainActivity extends AppCompatActivity  {
                     mayuscula = true;
                 if (Character.isLowerCase(c))
                     minuscula= true;
-                //  if (Character.isUnicodeIdentifierPart(c))
-                //  caracter = true;
+
             }
 
 
@@ -140,7 +136,7 @@ public class MainActivity extends AppCompatActivity  {
             if (mayuscula && numero && minuscula && caracter){
                 return  true;
             } else{
-                Toast.makeText(getApplicationContext(), "Debe contener mayuscula, minuscula,numero,y  caracter especial", Toast.LENGTH_SHORT).show();
+                Toast.makeText(getApplicationContext(), "Debe contener mayuscula, minuscula,numero y  caracter especial", Toast.LENGTH_SHORT).show();
                 return  false;
             }
 
