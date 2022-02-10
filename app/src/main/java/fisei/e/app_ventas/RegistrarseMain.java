@@ -94,25 +94,38 @@ public class RegistrarseMain extends AppCompatActivity {
 
     public void InsertarCliente(){
 
-        ExisteCliente();
-        if(x==0) {
-            Connection connection = connectionclass();
-            try {
-                if (connection != null) {
-                    String sqlinsert = "Insert into Clientes values ('" + editTextCedula.getText().toString() + "','" + editTextNombre.getText().toString() + "','" + editTextApellido.getText().toString() + "','" + editTextDireccion.getText().toString() + "','" + editTextClave.getText().toString() + "')";
-                    Statement st = connection.createStatement();
-                    ResultSet rs = st.executeQuery(sqlinsert);
-                }
-            } catch (SQLException e) {
-                Toast.makeText(getApplicationContext(), "Cliente Guardado...", Toast.LENGTH_SHORT).show();
+        String contraseña = editTextClave.getText().toString();
+
+        if (ValidarContrasenia(contraseña)){
+            ExisteCliente();
+            if(x==0) {
+                Connection connection = connectionclass();
+                try {
+                    if (connection != null) {
+                        String sqlinsert = "Insert into Clientes values ('" + editTextCedula.getText().toString() + "','"
+                                                                        + editTextNombre.getText().toString() + "','"
+                                                                        + editTextApellido.getText().toString() + "','"
+                                                                        + editTextDireccion.getText().toString() + "','"
+                                                                        + editTextClave.getText().toString() + "','"
+                                                                        + editTextCorreo.getText().toString()+ "')";
+                        Statement st = connection.createStatement();
+                        ResultSet rs = st.executeQuery(sqlinsert);
+                    }
+                } catch (SQLException e) {
+                    Toast.makeText(getApplicationContext(), "Cliente Guardado...", Toast.LENGTH_SHORT).show();
                     Intent intent= new Intent(this, MainActivity.class);
                     startActivity(intent);
 
+                }
             }
-        }
-        else{
-            x=0;
-           // Toast.makeText(getApplicationContext(), "ijiijij", Toast.LENGTH_SHORT).show();
+            else{
+                x=0;
+            }
+
+
+        }else{
+            Toast.makeText(getApplicationContext(), "Debe contener mayuscula, minuscula,numero,y  caracter especial", Toast.LENGTH_SHORT).show();
+
         }
 
     }
@@ -125,7 +138,7 @@ public class RegistrarseMain extends AppCompatActivity {
                 boolean mayuscula = false;
                 boolean numero = false;
                 boolean minuscula = false;
-                boolean caracter = false;
+                boolean caracter = true;
                 char c;
 
                 for (int i=0 ; i< contraseña.length();i++){
@@ -136,12 +149,14 @@ public class RegistrarseMain extends AppCompatActivity {
                         mayuscula = true;
                     if (Character.isLowerCase(c))
                         minuscula= true;
-                    if (Character.isSpaceChar(c))
-                        caracter = true;
-
-
+                   // if (Character.isSpaceChar(c))
+                        //caracter = true;
                 }
 
+                if (mayuscula && numero && minuscula && caracter)
+                    return  true;
+                else
+                    return  false;
 
             }else {
                 return  false;
