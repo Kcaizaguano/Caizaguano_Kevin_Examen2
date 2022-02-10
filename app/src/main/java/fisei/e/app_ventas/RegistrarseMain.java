@@ -126,8 +126,21 @@ public class RegistrarseMain extends AppCompatActivity {
                 boolean numero = false;
                 boolean minuscula = false;
                 boolean caracter = false;
+                char c;
+
+                for (int i=0 ; i< contraseña.length();i++){
+                    c = contraseña.charAt(i);
+                    if (Character.isDigit(c))
+                        numero = true;
+                    if (Character.isUpperCase(c))
+                        mayuscula = true;
+                    if (Character.isLowerCase(c))
+                        minuscula= true;
+                    if (Character.isSpaceChar(c))
+                        caracter = true;
 
 
+                }
 
 
             }else {
