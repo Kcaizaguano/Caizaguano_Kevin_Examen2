@@ -48,6 +48,7 @@
     <string name="apellidoR">Apellido:</string>
     <string name="direccionR">Direccion:</string>
     <string name="claveR">Contraseña:</string>
+    <string name="txt_correo">Correo</string>
 
 
 </resources>

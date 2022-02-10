@@ -68,8 +68,8 @@ public class MainActivity extends AppCompatActivity  {
     public void consultarLogin(){
         try {
             Statement st = conexionDB().createStatement();
-            ResultSet rs= st.executeQuery("select cedula_cli from Clientes\n" +
-                    "where cedula_cli='"+ editTextEmail.getText()+"'\n" +
+            ResultSet rs= st.executeQuery("select correo from Clientes\n" +
+                    "where correo='"+ editTextEmail.getText()+"'\n" +
                     "and contrasenia='"+ editTextPassword.getText()+"'");
             if(rs.next()){
                 if (rs.getString(1 )!="") {

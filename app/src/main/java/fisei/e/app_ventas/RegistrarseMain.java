@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.Message;
 import android.os.StrictMode;
 import android.view.View;
 import android.widget.EditText;
@@ -23,6 +24,7 @@ public class RegistrarseMain extends AppCompatActivity {
     EditText editTextApellido;
     EditText editTextDireccion;
     EditText editTextClave;
+    EditText editTextCorreo;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -34,6 +36,7 @@ public class RegistrarseMain extends AppCompatActivity {
         editTextApellido=(EditText) findViewById(R.id.editTextApellido);
         editTextDireccion=(EditText) findViewById(R.id.editTextDireccion);
         editTextClave=(EditText) findViewById(R.id.editTextClave);
+        editTextCorreo= findViewById(R.id.editTextCorreo);
 
     }
     @SuppressLint("NewApi")
@@ -62,6 +65,8 @@ public class RegistrarseMain extends AppCompatActivity {
         String apellido = editTextApellido.getText().toString();
         String direccion = editTextDireccion.getText().toString();
         String clave = editTextClave.getText().toString();
+        String correo = editTextCorreo.getText().toString();
+
         if (!cedula.equals("") && !nombre.equals("") && !apellido.equals("") && !direccion.equals("") && !clave.equals("")) {
             InsertarCliente();
         } else {
@@ -73,7 +78,7 @@ public class RegistrarseMain extends AppCompatActivity {
 
     public void ExisteCliente(){
         try {
-                    //CONSULTA PARA VER SI NO EXISTE EL CLIENTE
+
                     Statement st = connectionclass().createStatement();
                     ResultSet rs= st.executeQuery("select cedula_cli from Clientes where cedula_cli='"+editTextCedula.getText()+"'");
                     if(rs.next()) {
@@ -109,6 +114,24 @@ public class RegistrarseMain extends AppCompatActivity {
             x=0;
            // Toast.makeText(getApplicationContext(), "ijiijij", Toast.LENGTH_SHORT).show();
         }
+
+    }
+
+    public  Boolean ValidarContrasenia ( String contra){
+
+        try {
+
+            if (contra)
+
+
+
+
+        }catch (Exception ex ){
+
+            Toast.makeText(this, ex.getMessage(), Toast.LENGTH_SHORT).show();
+        }
+        return  false;
+
 
     }
 }
