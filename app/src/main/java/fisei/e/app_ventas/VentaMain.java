@@ -14,7 +14,6 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.Statement;
-import java.util.ArrayList;
 
 public class VentaMain extends AppCompatActivity {
     EditText editTBusqueda;
@@ -28,6 +27,7 @@ public class VentaMain extends AppCompatActivity {
     TextView textViewTotalVenta;
     TextView textViewIvaVenta;
     String numerof;
+    String idCliente;
 
 
     @Override
@@ -48,6 +48,8 @@ public class VentaMain extends AppCompatActivity {
         textviewDetalles=(TextView) findViewById(R.id.textViewDetalle);
 
         numerof= getIntent().getExtras().getString("numerof");
+        idCliente = getIntent().getExtras().getString("cedula");
+
         editTBusqueda.setText(numerof);
     }
     public Connection conexionDB(){
@@ -66,6 +68,7 @@ public class VentaMain extends AppCompatActivity {
     }
     public void consultarVentas(){
         try {
+            //Toast.makeText(this, idCliente, Toast.LENGTH_SHORT).show();
             Statement st = conexionDB().createStatement();
             ResultSet rs= st.executeQuery("select c.cedula_cli,c.nombre_cli +' '+c.apellido_cli, c.direccion_cli, v.fecha_ven,v.total,v.subtotal,v.iva \n" +
                     "from Clientes  c\n" +

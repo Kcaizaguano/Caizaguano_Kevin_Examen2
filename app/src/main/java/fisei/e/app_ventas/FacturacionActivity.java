@@ -16,6 +16,7 @@ public class FacturacionActivity extends AppCompatActivity {
     ArrayList<String> lstProductos = new ArrayList<>();
     ListView listviewProducto ;
     String numerof;
+    String cedula;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -36,6 +37,8 @@ public class FacturacionActivity extends AppCompatActivity {
         }
 
         numerof= getIntent().getExtras().getString("numerof");
+        cedula= getIntent().getExtras().getString("cedula");
+
         Toast.makeText(getApplicationContext(),numerof,Toast.LENGTH_SHORT).show();
 
 
@@ -44,6 +47,7 @@ public class FacturacionActivity extends AppCompatActivity {
 
         Intent intent= new Intent(this, VentaMain.class);
         intent.putExtra("numerof",numerof);
+        intent.putExtra("cedula",cedula);
         startActivity(intent);
 
     }

@@ -39,6 +39,7 @@ public class ComprasMain extends AppCompatActivity {
     CheckBox checkBoxCodigoProducto;
     EditText cantidad;
     EditText usuario;
+    String correo;
     String cedula;
     String idCliente;
     int contador =0;
@@ -63,7 +64,7 @@ public class ComprasMain extends AppCompatActivity {
 
 
         compra= (ImageButton) findViewById(R.id.btnCompra);
-        cedula = getIntent().getExtras().getString("cedula");
+        correo = getIntent().getExtras().getString("cedula");
         NUmerofactura();
         CargarCliente();
         //fecha
@@ -81,10 +82,10 @@ public class ComprasMain extends AppCompatActivity {
 
         try {
             Statement st = conexionDB().createStatement();
-            ResultSet rs= st.executeQuery("select id_cliente from Clientes where cedula_cli= '"+ cedula +"'");
+            ResultSet rs= st.executeQuery("select id_cliente , cedula_cli from Clientes where correo= '"+ correo +"'");
             if (rs.next()){
                 idCliente = rs.getString(1);
-
+                cedula= rs.getString(2);
             }
         }catch (Exception e){
             Toast.makeText(getApplicationContext(),e.getMessage(),Toast.LENGTH_SHORT).show();
@@ -230,6 +231,7 @@ public class ComprasMain extends AppCompatActivity {
             Intent intent = new Intent(this,FacturacionActivity.class);
             // intent.putExtra("NombrePro",textViewNombreProducto.getText().toString());
             intent.putStringArrayListExtra("lstProductos",lstProductos);
+            intent.putExtra("cedula",idCliente);
 
             String nf=textViewNumeroFactura.getText().toString();
             intent.putExtra("numerof",nf);
