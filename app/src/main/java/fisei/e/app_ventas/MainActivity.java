@@ -108,6 +108,8 @@ public class MainActivity extends AppCompatActivity  {
             boolean caracter = true;
             char c;
 
+
+
             for (int i=0 ; i< contraseña.length();i++){
                 c = contraseña.charAt(i);
                 if (Character.isDigit(c))
@@ -125,7 +127,7 @@ public class MainActivity extends AppCompatActivity  {
             if (mayuscula && numero && minuscula && caracter){
                 return  true;
             } else{
-                Toast.makeText(getApplicationContext(), "Debe contener mayuscula, minuscula,numero,y  caracter especial", Toast.LENGTH_SHORT).show();
+                Toast.makeText(getApplicationContext(), "Debe contener mayuscula, minuscula,numero y  caracter especial", Toast.LENGTH_SHORT).show();
                 return  false;
             }
 
