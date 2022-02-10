@@ -153,6 +153,8 @@ public class RegistrarseMain extends AppCompatActivity {
                         //caracter = true;
                 }
 
+
+
                 if (mayuscula && numero && minuscula && caracter)
                     return  true;
                 else
