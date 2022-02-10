@@ -130,6 +130,8 @@ public class MainActivity extends AppCompatActivity  {
             }
 
         }else {
+            Toast.makeText(getApplicationContext(), "La contraseña es de  6 a 10 caracteres", Toast.LENGTH_SHORT).show();
+
             return  false;
         }
 

@@ -199,6 +199,7 @@ public class RegistrarseMain extends AppCompatActivity {
                 }
 
             }else {
+                Toast.makeText(getApplicationContext(), "La contraseña es 6 a 10 caracteres", Toast.LENGTH_SHORT).show();
                 return  false;
             }
 
