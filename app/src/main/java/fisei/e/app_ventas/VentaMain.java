@@ -74,7 +74,8 @@ public class VentaMain extends AppCompatActivity {
                     "from Clientes  c\n" +
                     "inner join Venta v on\n" +
                     "c.id_cliente =v.id_cliente\n" +
-                    "where v.id_venta ='"+editTBusqueda.getText() +"'");
+                    "where v.id_venta ='"+editTBusqueda.getText() +"'" +
+                    "and v.id_cliente = '" + idCliente + "'");
             if(rs.next()){
                 textViewCedulaVenta.setText(rs.getString(1));
                 tvNombreC.setText(rs.getString(2));
@@ -93,8 +94,8 @@ public class VentaMain extends AppCompatActivity {
 
         }catch (Exception e){
             //Toast.makeText(getApplicationContext(),e.getMessage(),Toast.LENGTH_SHORT).show();
-            Toast.makeText(this,"Error de datos, la venta no existe",Toast.LENGTH_LONG);
             limpiar();
+            Toast.makeText(this,"Error de datos, la venta no existe",Toast.LENGTH_LONG);
         }
 
     }
@@ -107,14 +108,15 @@ public class VentaMain extends AppCompatActivity {
                     "c.id_vent_per =v.id_venta\n" +
                     " join Productos p on\n" +
                     "p.id_producto =c.id_pro\n" +
-                    "where v.id_venta ='"+editTBusqueda.getText()+"'");
+                    "where v.id_venta ='"+editTBusqueda.getText()+"'" +
+                    "and v.id_cliente = '" + idCliente + "'");
             while (rs.next()==true) {
 
 
                 for (int i = 1; i <= 4; i++) {
 
                     String datos = rs.getString(i);
-                    textviewDetalles.append(datos + "        |         ");
+                    textviewDetalles.append(datos + "        |       ");
                 }
 
             }
@@ -149,7 +151,7 @@ public class VentaMain extends AppCompatActivity {
         textViewTotalVenta.setText("");
         textViewSubTotalVenta.setText("");
         textViewIvaVenta.setText("");
-        textviewDetalles.append("");
+        textviewDetalles.setText("");
     }
 
 
