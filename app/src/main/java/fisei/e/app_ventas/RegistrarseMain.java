@@ -107,8 +107,9 @@ public class RegistrarseMain extends AppCompatActivity {
     public void InsertarCliente(){
 
         String contraseña = editTextClave.getText().toString();
+        String correo = editTextCorreo.getText().toString();
 
-        if (ValidarContrasenia(contraseña)){
+        if (ValidarContrasenia(contraseña) && ValidarCorreo(correo)){
             ExisteCliente();
             if(x==0) {
                 Connection connection = connectionclass();
@@ -136,28 +137,33 @@ public class RegistrarseMain extends AppCompatActivity {
 
 
         }else{
-            Toast.makeText(getApplicationContext(), "Debe contener mayuscula, minuscula,numero,y  caracter especial", Toast.LENGTH_SHORT).show();
+           // Toast.makeText(getApplicationContext(), "Debe contener mayuscula, minuscula,numero,y  caracter especial", Toast.LENGTH_SHORT).show();
 
         }
 
     }
 
-    public Boolean VaildarCorreo (String correo){
+    public Boolean ValidarCorreo (String correo){
+
+        boolean salida = false;
 
         try {
 
             Statement st = connectionclass().createStatement();
-            ResultSet rs= st.executeQuery("select cedula_cli from Clientes where cedula_cli='"+editTextCedula.getText()+"'");
+            ResultSet rs= st.executeQuery("select correo from Clientes where correo='"+editTextCorreo.getText()+"'");
             if(rs.next()) {
                 if (rs.getString(1) != "") {
-                    Toast.makeText(this, "El cliente ya existe...", Toast.LENGTH_LONG).show();
-                    x=1;
+                    Toast.makeText(this, "El correo ya existe...", Toast.LENGTH_LONG).show();
+                    salida= false;
+                }else {
+                    salida= true;
                 }
             }
 
         }catch (Exception ex){
-            return  false;
+            salida=  false;
         }
+        return  salida;
     }
 
     public  Boolean ValidarContrasenia ( String contraseña){
@@ -170,8 +176,6 @@ public class RegistrarseMain extends AppCompatActivity {
                 boolean minuscula = false;
                 boolean caracter = true;
                 char c;
-
-
 
                 for (int i=0 ; i< contraseña.length();i++){
                     c = contraseña.charAt(i);
@@ -187,10 +191,12 @@ public class RegistrarseMain extends AppCompatActivity {
 
 
 
-                if (mayuscula && numero && minuscula && caracter)
+                if (mayuscula && numero && minuscula && caracter){
                     return  true;
-                else
+                } else{
+                    Toast.makeText(getApplicationContext(), "Debe contener mayuscula, minuscula,numero,y  caracter especial", Toast.LENGTH_SHORT).show();
                     return  false;
+                }
 
             }else {
                 return  false;
