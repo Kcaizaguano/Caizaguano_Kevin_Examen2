@@ -99,7 +99,7 @@
             android:backgroundTint="#F1F2F3"
             android:drawableStart="@drawable/ic_baseline_person_24"
             android:ems="10"
-            android:hint="Usuario"
+            android:hint="Correo"
             android:inputType="textEmailAddress"
             android:textColor="#0C0C0C"
             android:textColorHighlight="#131313"
@@ -114,7 +114,8 @@
             android:drawableStart="@drawable/ic_baseline_lock_open_24"
             android:ems="10"
             android:hint="Contraseña"
-            android:inputType="textPassword" />
+            android:inputType="text"
+            android:maxLength="10" />
 
     </LinearLayout>
 

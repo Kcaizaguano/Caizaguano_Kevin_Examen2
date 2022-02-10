@@ -50,7 +50,6 @@ public class MainActivity extends AppCompatActivity  {
         startActivity(intent);
     }
 
-//public void iniciar (View view){}
 
     public Connection conexionDB(){
         Connection conex=null;
