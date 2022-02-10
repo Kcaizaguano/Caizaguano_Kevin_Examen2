@@ -74,7 +74,7 @@ public class VentaMain extends AppCompatActivity {
                     "from Clientes  c\n" +
                     "inner join Venta v on\n" +
                     "c.id_cliente =v.id_cliente\n" +
-                    "where v.id_venta ='"+editTBusqueda.getText()+"'");
+                    "where v.id_venta ='"+editTBusqueda.getText() +"'");
             if(rs.next()){
                 textViewCedulaVenta.setText(rs.getString(1));
                 tvNombreC.setText(rs.getString(2));
@@ -85,13 +85,16 @@ public class VentaMain extends AppCompatActivity {
               textViewIvaVenta.setText(rs.getString(7));
 
 
-            }else if (rs ==null) {
+            }else if (rs.getString(1) == "") {
                 Toast.makeText(this,"Error de datos, la venta no existe",Toast.LENGTH_LONG);
+
             }
 
 
         }catch (Exception e){
-            Toast.makeText(getApplicationContext(),e.getMessage(),Toast.LENGTH_SHORT).show();
+            //Toast.makeText(getApplicationContext(),e.getMessage(),Toast.LENGTH_SHORT).show();
+            Toast.makeText(this,"Error de datos, la venta no existe",Toast.LENGTH_LONG);
+            limpiar();
         }
 
     }
@@ -118,6 +121,7 @@ public class VentaMain extends AppCompatActivity {
 
         }catch (Exception e){
             Toast.makeText(getApplicationContext(),e.getMessage(),Toast.LENGTH_SHORT).show();
+            limpiar();
         }
     }
     public void checkFactura(View view){
@@ -135,6 +139,17 @@ public class VentaMain extends AppCompatActivity {
                     break;
 
         }
+    }
+
+    public  void  limpiar(){
+        textViewCedulaVenta.setText("");
+        tvNombreC.setText("");
+        textViewTelefonoVenta.setText("");
+        textViewFechaVenta.setText("");
+        textViewTotalVenta.setText("");
+        textViewSubTotalVenta.setText("");
+        textViewIvaVenta.setText("");
+        textviewDetalles.append("");
     }
 
 
