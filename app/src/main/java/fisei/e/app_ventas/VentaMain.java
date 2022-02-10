@@ -86,11 +86,11 @@ public class VentaMain extends AppCompatActivity {
               textViewIvaVenta.setText(rs.getString(7));
 
 
-            }else if (rs.getString(1) == "") {
+            }else if (rs == null) {
+                //limpiar();
                 Toast.makeText(this,"Error de datos, la venta no existe",Toast.LENGTH_LONG);
 
             }
-
 
         }catch (Exception e){
             //Toast.makeText(getApplicationContext(),e.getMessage(),Toast.LENGTH_SHORT).show();

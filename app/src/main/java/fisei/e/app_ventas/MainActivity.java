@@ -65,24 +65,31 @@ public class MainActivity extends AppCompatActivity  {
         }
         return conex;
     }
+
     public void consultarLogin(){
         try {
-            Statement st = conexionDB().createStatement();
-            ResultSet rs= st.executeQuery("select correo from Clientes\n" +
-                    "where correo='"+ editTextEmail.getText()+"'\n" +
-                    "and contrasenia='"+ editTextPassword.getText()+"'");
-            if(rs.next()){
-                if (rs.getString(1 )!="") {
+            String contraseña = editTextPassword.getText().toString();
+
+            if (ValidarContrasenia(contraseña)){
+
+                Statement st = conexionDB().createStatement();
+                ResultSet rs= st.executeQuery("select correo from Clientes\n" +
+                        "where correo='"+ editTextEmail.getText()+"'\n" +
+                        "and contrasenia='"+ editTextPassword.getText()+"'");
+                if(rs.next()){
+                    if (rs.getString(1 )!="") {
 
                         String cedula = editTextEmail.getText().toString();
-                            editTextEmail.setText("");
-                            editTextPassword.setText("");
-                            Intent intent = new Intent(this, Menu.class);
-                            intent.putExtra("cedula",cedula);
-                            startActivity(intent);
+                        editTextEmail.setText("");
+                        editTextPassword.setText("");
+                        Intent intent = new Intent(this, Menu.class);
+                        intent.putExtra("cedula",cedula);
+                        startActivity(intent);
+                    }
+                }else if (rs.getString(1 )=="") {
+                    Toast.makeText(this,"Error Datos no encontrados",Toast.LENGTH_LONG).show();
                 }
-            }else if (rs.getString(1 )=="") {
-                Toast.makeText(this,"Error Datos no encontrados",Toast.LENGTH_LONG).show();
+
             }
 
         }catch (Exception e){
@@ -90,7 +97,43 @@ public class MainActivity extends AppCompatActivity  {
         }
     }
 
+    public  Boolean ValidarContrasenia ( String contraseña){
 
+
+        if (contraseña.length() > 6 ){
+
+            boolean mayuscula = false;
+            boolean numero = false;
+            boolean minuscula = false;
+            boolean caracter = true;
+            char c;
+
+            for (int i=0 ; i< contraseña.length();i++){
+                c = contraseña.charAt(i);
+                if (Character.isDigit(c))
+                    numero = true;
+                if (Character.isUpperCase(c))
+                    mayuscula = true;
+                if (Character.isLowerCase(c))
+                    minuscula= true;
+                //  if (Character.isUnicodeIdentifierPart(c))
+                //  caracter = true;
+            }
+
+
+
+            if (mayuscula && numero && minuscula && caracter){
+                return  true;
+            } else{
+                Toast.makeText(getApplicationContext(), "Debe contener mayuscula, minuscula,numero,y  caracter especial", Toast.LENGTH_SHORT).show();
+                return  false;
+            }
+
+        }else {
+            return  false;
+        }
+
+    }
 
 
 }
